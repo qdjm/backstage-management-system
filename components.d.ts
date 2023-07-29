@@ -7,7 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    BackEdit: typeof import('./src/components/backEdit.vue')['default']
     ChartOutline: typeof import('./src/components/ChartOutline.vue')['default']
     EditForm: typeof import('./src/components/EditForm.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
@@ -33,14 +32,11 @@ declare module 'vue' {
     FourPage: typeof import('./src/components/FourPage.vue')['default']
     LeftMenu: typeof import('./src/components/LeftMenu.vue')['default']
     OnePage: typeof import('./src/components/OnePage.vue')['default']
-    REditForm: typeof import('./src/components/rEditForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ThreePage: typeof import('./src/components/ThreePage.vue')['default']
     TopMenu: typeof import('./src/components/TopMenu.vue')['default']
-    TwiceElDialog: typeof import('./src/components/TwiceElDialog.vue')['default']
     TwiceElForm: typeof import('./src/components/TwiceElForm.vue')['default']
-    TwiceElPagination: typeof import('./src/components/TwiceElPagination.vue')['default']
     TwiceElTable: typeof import('./src/components/TwiceElTable.vue')['default']
     TwoPage: typeof import('./src/components/TwoPage.vue')['default']
   }

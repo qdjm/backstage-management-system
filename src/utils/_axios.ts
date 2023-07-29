@@ -1,8 +1,12 @@
 import axios from "axios";
 import { ElMessage, ElLoading } from 'element-plus'
+
+let axiosUrl: string | undefined = ''
+axiosUrl = import.meta.env.VITE_APP_BASE_URL
+
 // 实例 axios
 const _axios = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: axiosUrl
 });
 // 加载loading框
 let loading: any
