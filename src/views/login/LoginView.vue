@@ -26,8 +26,8 @@
 import { reactive, ref, watch } from 'vue'
 import { ElMessage, FormInstance, FormRules } from 'element-plus'
 import { checkUsername, checkPwd } from '../../utils/verification'
-import link from '../../api/Link'
-import apiUrl from '../../api/Url'
+import _axios from '../../utils/_axios'
+import apiUrl from '../../api/apiUrl'
 import useMd5 from '../../hooks/useMd5'
 import { useRouter } from 'vue-router'
 
@@ -80,14 +80,16 @@ const submitForm = (formEl: FormInstance | undefined) => {
   formEl.validate((valid) => {
     if (valid) {
       // 发送登录请求
-      link(`${apiUrl.register}?username=${ruleForm.username}&pwd=${useMd5(ruleForm.password).value}`, 'GET').then((res: any) => {
+      _axios.get(`${apiUrl.userList}?username=${ruleForm.username}&pwd=${useMd5(ruleForm.password).value}`).then((res: any) => {
         // 判断请求返回结果的长度是否不等于 0
         if (res.data.length !== 0) {
-          ElMessage({
-            message: '登录成功',
-            type: 'success',
-          })
+          localStorage.setItem('token', useMd5(ruleForm.password).value)
+          localStorage.setItem('id', res.data[0].id)
           router.push('/home')
+          // ElMessage({
+          //   message: '登录成功',
+          //   type: 'success',
+          // })
         } else {
           ElMessage.error('登录失败！')
         }
@@ -101,7 +103,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 // elementPlus表单部分-结束
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .loginForm {
   $radius: 4px;
   border: 1px solid skyblue;
@@ -126,7 +128,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     .loginBtn {
       width: 100%;
       display: block;
-      margin-top: 10px;
+      margin-top: 5px;
     }
   }
 }

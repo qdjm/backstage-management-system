@@ -14,5 +14,13 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
-  ]
+  ],
+  css: {
+    preprocessorOptions: {
+      // 全局样式引入
+      scss: {
+        additionalData: '@import "./src/styles/style.scss";'
+      }
+    }
+  }
 })

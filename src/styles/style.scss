@@ -1,1 +1,7 @@
-@import './main.scss'
+@import './main.scss';
+
+.el-table {
+  .cell {
+    text-align: center;
+  }
+}
